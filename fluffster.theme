@@ -1,0 +1,27 @@
+<?php
+
+/*
+ * Implements theme_preprocess_page().
+ *
+ */
+function fluffster_preprocess_page(&$variables)
+{
+
+  global $base_url;
+
+  $fid = theme_get_setting('fluffster_image');
+
+  if(!empty($fid)){
+    $file = File::load($fid[0]);
+  }
+
+  if(!empty($file)) {
+    $variables['fluffster_image_url'] = $file->url();
+  }
+  else {
+    $variables['fluffster_image_url'] = $base_url . '/' . \Drupal::theme()->getActiveTheme()->getPath() . '/images/demo/front.jpg';
+  }
+
+  $variables['fluffster_block_title'] = theme_get_setting('fluffster_block_title');
+
+}
