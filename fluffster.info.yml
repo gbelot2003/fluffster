@@ -1,0 +1,19 @@
+name: Fluffster Practice Theme
+type: theme
+description: 'Drupal Open Source version of Flusster Template.'
+core: 8.x
+
+regions:
+  menuheader: Menu Header
+  header: Header
+  main: Main Manu
+  breadcrumb: Breadcrumns
+  content: Content
+  sidebar_first: Sidebar First
+  sidebar_secund: Sidebar Secund
+  footer: Footer
+  page_top: Page Top
+  page_button: Page Button
+
+libraries:
+  - fluffster/global-css

@@ -1,0 +1,6 @@
+global-css:
+  version: VERSION
+  css:
+    theme:
+      layout/styles/layout.css : {}
+      layout/styles/framework.css : {}
