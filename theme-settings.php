@@ -184,5 +184,14 @@ function fluffster_form_system_theme_settings_alter(&$form, FormStateInterface $
     )
   );
 
+  // Colored Secundary panel
+  $form['fluffster_introblocks'] = array(
+    '#type'         => 'details',
+    '#title'        => t('Intro blocks Section'),
+    '#description'  => t('Configure info displayed on Intro blocks'),
+    '#weight'       => -10,
+    '#open'         => FALSE,
+  );
+
 }
 

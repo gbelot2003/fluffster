@@ -5,6 +5,7 @@
  *
  */
 
+use Drupal\file\Entity\File;
 use Drupal\kint\Plugin\Devel\Dumper\Kint;
 use Drupal\node\Entity\Node;
 
