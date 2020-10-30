@@ -34,6 +34,14 @@ function fluffster_form_system_theme_settings_alter(&$form, FormStateInterface $
   $cpsLink = theme_get_setting('fluffster_colored_link');
   $coloredLink = (int) $cpsLink[0]['target_id'];
 
+  $innerb1 = theme_get_setting('fluffster_innerblock_first_node');
+  $iblock1 = (int) $innerb1[0]['target_id'];
+
+  $innerb2 = theme_get_setting('fluffster_innerblock_secund_node');
+  $iblock2 = (int) $innerb1[0]['target_id'];
+
+  $innerb3 = theme_get_setting('fluffster_innerblock_third_node');
+  $iblock3 = (int) $innerb1[0]['target_id'];
 
   // Front main image info
   $form['fluffster_main_image'] = array(
@@ -188,10 +196,88 @@ function fluffster_form_system_theme_settings_alter(&$form, FormStateInterface $
   $form['fluffster_introblocks'] = array(
     '#type'         => 'details',
     '#title'        => t('Intro blocks Section'),
-    '#description'  => t('Configure info displayed on Intro blocks'),
+    '#description'  => t('Configure info displayed on innerblock'),
     '#weight'       => -10,
     '#open'         => FALSE,
   );
+
+  $form['fluffster_introblocks']['fluffster_innerblock_title'] = array(
+    '#type'           => 'textfield',
+    '#title'          => t('Inner block Title'),
+    '#description'    => t("This text will be display on the title."),
+    '#default_value'  => theme_get_setting('fluffster_first_title'),
+  );
+
+  $form['fluffster_introblocks']['fluffster_innerblock_subtext'] = array(
+    '#type'           => 'search',
+    '#title'          => t('Inner block sub-text'),
+    '#description'    => t("This text will be display in subtext."),
+    '#default_value'  => theme_get_setting('fluffster_first_subtext'),
+  );
+
+  $form['fluffster_introblocks']['fluffster_innerblock_first_node'] = array(
+    '#type'                 => 'entity_autocomplete',
+    '#title'                => t('Inner block First Panel'),
+    '#target_type'          => 'node',
+    '#tags'                 => TRUE,
+    '#default_value'        => Node::load($iblock1),
+    '#selection_handler'    => 'default',
+    '#selection_settings'   => array(
+      'target_bundles'      => ['article', 'page'],
+    ),
+    '#autocreate'           => array(
+      'bundle'              => 'article',
+      'uid'                 => 1,
+      )
+    );
+
+    $form['fluffster_introblocks']['fluffster_innerblock_first_node'] = array(
+      '#type'                 => 'entity_autocomplete',
+      '#title'                => t('Inner block First Panel'),
+      '#target_type'          => 'node',
+      '#tags'                 => TRUE,
+      '#default_value'        => Node::load($iblock1),
+      '#selection_handler'    => 'default',
+      '#selection_settings'   => array(
+        'target_bundles'      => ['article', 'page'],
+      ),
+      '#autocreate'           => array(
+        'bundle'              => 'article',
+        'uid'                 => 1,
+        )
+    );
+
+    $form['fluffster_introblocks']['fluffster_innerblock_secund_node'] = array(
+      '#type'                 => 'entity_autocomplete',
+      '#title'                => t('Inner block Secund Panel'),
+      '#target_type'          => 'node',
+      '#tags'                 => TRUE,
+      '#default_value'        => Node::load($iblock2),
+      '#selection_handler'    => 'default',
+      '#selection_settings'   => array(
+        'target_bundles'      => ['article', 'page'],
+      ),
+      '#autocreate'           => array(
+        'bundle'              => 'article',
+        'uid'                 => 1,
+        )
+    );
+
+    $form['fluffster_introblocks']['fluffster_innerblock_third_node'] = array(
+      '#type'                 => 'entity_autocomplete',
+      '#title'                => t('Inner block Third Panel'),
+      '#target_type'          => 'node',
+      '#tags'                 => TRUE,
+      '#default_value'        => Node::load($iblock3),
+      '#selection_handler'    => 'default',
+      '#selection_settings'   => array(
+        'target_bundles'      => ['article', 'page'],
+      ),
+      '#autocreate'           => array(
+        'bundle'              => 'article',
+        'uid'                 => 1,
+        )
+    );
 
 }
 

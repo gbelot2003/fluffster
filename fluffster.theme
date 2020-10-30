@@ -92,7 +92,39 @@ function fluffster_preprocess_page(&$variables)
     $variables['fluffster_colored_link']['url'] = $coloredLink->toUrl();
   }
 
+  // Innerblock Secction
+  $variables['fluffster_innerblock_title'] = theme_get_setting('fluffster_innerblock_title');
+  $variables['fluffster_innerblock_subtext'] = theme_get_setting('fluffster_innerblock_subtext');
 
+  $innernode1 = theme_get_setting('fluffster_innerblock_first_node');
+  $innernid1 = (int) $innernode1[0]['target_id'];
+  $inner_first_node = Node::load($innernid1);
+
+  if($inner_first_node){
+    $variables['fluffster_inner_first_node']['title'] = $inner_first_node->getTitle();
+    $variables['fluffster_inner_first_node']['sumary'] = $inner_first_node->get('body')->summary;
+    $variables['fluffster_inner_first_node']['url'] = $inner_first_node->toUrl();
+  }
+
+  $innernode2 = theme_get_setting('fluffster_innerblock_secund_node');
+  $innernid2 = (int) $innernode2[0]['target_id'];
+  $inner_secund_node = Node::load($innernid2);
+
+  if($inner_secund_node){
+    $variables['fluffster_inner_secund_node']['title'] = $inner_secund_node->getTitle();
+    $variables['fluffster_inner_secund_node']['sumary'] = $inner_secund_node->get('body')->summary;
+    $variables['fluffster_inner_secund_node']['url'] = $inner_secund_node->toUrl();
+  }
+
+  $innernode3 = theme_get_setting('fluffster_innerblock_third_node');
+  $innernid3 = (int) $innernode3[0]['target_id'];
+  $inner_third_node = Node::load($innernid3);
+
+  if($inner_third_node){
+    $variables['fluffster_inner_third_node']['title'] = $inner_third_node->getTitle();
+    $variables['fluffster_inner_third_node']['sumary'] = $inner_third_node->get('body')->summary;
+    $variables['fluffster_inner_third_node']['url'] = $inner_third_node->toUrl();
+  }
 
 
 }
