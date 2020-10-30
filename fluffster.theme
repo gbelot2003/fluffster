@@ -13,6 +13,18 @@ function fluffster_preprocess_page(&$variables)
 
   global $base_url;
 
+  // Main text Configuration
+  $config = \Drupal::config('system.site');
+
+  $firt_Text = theme_get_setting('fluffster_block_title');
+
+  if(!$firt_Text){
+    $variables['fluffster_block_title'] = $config->get('name');
+  } else {
+    $variables['fluffster_block_title'] = $firt_Text;
+  }
+
+  // Image Configuration
   $fid = theme_get_setting('fluffster_image');
   if(!empty($fid)){
     $file = File::load($fid[0]);
@@ -24,25 +36,62 @@ function fluffster_preprocess_page(&$variables)
     $variables['fluffster_image_url'] = $base_url . '/' . \Drupal::theme()->getActiveTheme()->getPath() . '/images/demo/front.jpg';
   }
 
+  // First Panels Section
+  $variables['fluffster_first_banner_title'] = theme_get_setting('fluffster_first_title');
+  $variables['fluffster_first_banner_subtext'] = theme_get_setting('fluffster_first_subtext');
+
   $node = theme_get_setting('first_node');
   $nid = (int) $node[0]['target_id'];
   $first_node = Node::load($nid);
-  Kint($first_node);
-;
+
+  if($first_node){
+    $variables['fluffster_first_node']['title'] = $first_node->getTitle();
+    $variables['fluffster_first_node']['sumary'] = $first_node->get('body')->summary;
+    $variables['fluffster_first_node']['url'] = $first_node->toUrl();
+  }
+
+  $node2 = theme_get_setting('secund_node');
+  $nid2 = (int) $node2[0]['target_id'];
+  $secund_node = Node::load($nid2);
+
+  if($secund_node){
+    $variables['fluffster_secund_node']['title'] = $secund_node->getTitle();
+    $variables['fluffster_secund_node']['sumary'] = $secund_node->get('body')->summary;
+    $variables['fluffster_secund_node']['url'] = $secund_node->toUrl();
+  }
+
+  $node3 = theme_get_setting('third_node');
+  $nid3 = (int) $node3[0]['target_id'];
+  $third_node = Node::load($nid3);
+
+  if($third_node){
+    $variables['fluffster_third_node']['title'] = $third_node->getTitle();
+    $variables['fluffster_third_node']['sumary'] = $third_node->get('body')->summary;
+    $variables['fluffster_third_node']['url'] = $third_node->toUrl();
+  }
+
+  $slink = theme_get_setting('service_link');
+  $slinkNid = (int) $slink[0]['target_id'];
+  $service_link = Node::load($slinkNid);
+
+  if($service_link){
+    $variables['fluffster_service_link']['title'] = $service_link->getTitle();
+    $variables['fluffster_service_link']['url'] = $service_link->toUrl();
+  }
+
+  // colored Section
+  $variables['fluffster_colored_text'] = theme_get_setting('fluffster_colored_text');
+
+  $cpsLink = theme_get_setting('fluffster_colored_link');
+  $cpsLinkNid = (int) $cpsLink[0]['target_id'];
+  $coloredLink = Node::load($cpsLinkNid);
+
+  if($coloredLink){
+    $variables['fluffster_colored_link']['title'] = $service_link->getTitle();
+    $variables['fluffster_colored_link']['url'] = $service_link->toUrl();
+  }
 
 
-  $variables['fluffster_first_title'] = [];
 
-  $variables['fluffster_block_title'] = theme_get_setting('fluffster_block_title');
 
-  $variables['fluffster_first_banner_title'] = theme_get_setting('fluffster_first_title');
-
-  $variables['fluffster_first_banner_subtext'] = theme_get_setting('fluffster_first_subtext');
-
-  $variables['fluffster_first_node']['title'] = $first_node->getTitle();
-
-  $variables['fluffster_first_node']['sumary'] = $first_node->get('body')->summary;
-
-  //$variables['fluffster_first_node']['sumary'] = $first_node->getTitle();
-  //$variables['first_node'] = theme_get_setting('first_node');
 }
