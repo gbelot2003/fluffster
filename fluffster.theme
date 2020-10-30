@@ -4,17 +4,19 @@
  * Implements theme_preprocess_page().
  *
  */
+
+use Drupal\kint\Plugin\Devel\Dumper\Kint;
+use Drupal\node\Entity\Node;
+
 function fluffster_preprocess_page(&$variables)
 {
 
   global $base_url;
 
   $fid = theme_get_setting('fluffster_image');
-
   if(!empty($fid)){
     $file = File::load($fid[0]);
   }
-
   if(!empty($file)) {
     $variables['fluffster_image_url'] = $file->url();
   }
@@ -22,9 +24,25 @@ function fluffster_preprocess_page(&$variables)
     $variables['fluffster_image_url'] = $base_url . '/' . \Drupal::theme()->getActiveTheme()->getPath() . '/images/demo/front.jpg';
   }
 
+  $node = theme_get_setting('first_node');
+  $nid = (int) $node[0]['target_id'];
+  $first_node = Node::load($nid);
+  Kint($first_node);
+;
+
+
+  $variables['fluffster_first_title'] = [];
+
   $variables['fluffster_block_title'] = theme_get_setting('fluffster_block_title');
 
   $variables['fluffster_first_banner_title'] = theme_get_setting('fluffster_first_title');
 
   $variables['fluffster_first_banner_subtext'] = theme_get_setting('fluffster_first_subtext');
+
+  $variables['fluffster_first_node']['title'] = $first_node->getTitle();
+
+  $variables['fluffster_first_node']['sumary'] = $first_node->get('body')->summary;
+
+  //$variables['fluffster_first_node']['sumary'] = $first_node->getTitle();
+  //$variables['first_node'] = theme_get_setting('first_node');
 }
