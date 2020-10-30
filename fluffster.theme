@@ -87,8 +87,8 @@ function fluffster_preprocess_page(&$variables)
   $coloredLink = Node::load($cpsLinkNid);
 
   if($coloredLink){
-    $variables['fluffster_colored_link']['title'] = $service_link->getTitle();
-    $variables['fluffster_colored_link']['url'] = $service_link->toUrl();
+    $variables['fluffster_colored_link']['title'] = $coloredLink->getTitle();
+    $variables['fluffster_colored_link']['url'] = $coloredLink->toUrl();
   }
 
 
