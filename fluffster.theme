@@ -24,4 +24,7 @@ function fluffster_preprocess_page(&$variables)
 
   $variables['fluffster_block_title'] = theme_get_setting('fluffster_block_title');
 
+  $variables['fluffster_first_banner_title'] = theme_get_setting('fluffster_first_title');
+
+  $variables['fluffster_first_banner_subtext'] = theme_get_setting('fluffster_first_subtext');
 }

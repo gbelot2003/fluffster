@@ -45,7 +45,7 @@ function fluffster_form_system_theme_settings_alter(&$form, Drupal\Core\Form\For
   );
 
   // First Banner Title
-  $form['fluffster_first_banner'] = array(
+  $form['fluffster_banners'] = array(
     '#type'         => 'details',
     '#title'        => t('First Banner'),
     '#description'  => t('Configure info displayed on first banner'),
@@ -53,12 +53,22 @@ function fluffster_form_system_theme_settings_alter(&$form, Drupal\Core\Form\For
     '#open'         => TRUE,
   );
 
-  $form['fluffster_first_banner']['fluffster_title'] = array(
+  $form['fluffster_banners']['fluffster_first_title'] = array(
     '#type'           => 'textfield',
     '#title'          => t('Banner Title'),
     '#description'    => t("This text will be display on the first banner title."),
-    '#default_value'  => theme_get_setting('fluffster_first_banner_title'),
+    '#default_value'  => theme_get_setting('fluffster_first_title'),
   );
+
+  $form['fluffster_banners']['fluffster_first_subtext'] = array(
+    '#type'           => 'textfield',
+    '#title'          => t('Banner sub-text'),
+    '#description'    => t("This text will be display on the first banner subtext."),
+    '#default_value'  => theme_get_setting('fluffster_first_subtext'),
+  );
+
+
+
 
 }
 
