@@ -4,3 +4,4 @@ global-css:
     theme:
       layout/styles/layout.css : {}
       layout/styles/framework.css : {}
+      layout/styles/theme-styles.css: {}

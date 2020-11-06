@@ -1,0 +1,11 @@
+#block-fluffster-primary-local-tasks {}
+
+#block-fluffster-primary-local-tasks ul {
+    list-style: none;
+}
+
+#block-fluffster-primary-local-tasks ul li {
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+}
